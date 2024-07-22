@@ -9,6 +9,10 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "dronenews.client", "dronene
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroneNews.Model", "Model\DroneNews.Model.csproj", "{31DA7407-0060-4A76-9F4C-D39C72BE25F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronJobs", "CronJobs\CronJobs.csproj", "{9E675F3D-A2C9-47CB-AA2C-0BA5C133D11A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandHandlers", "CommandHandlers\CommandHandlers.csproj", "{E5DDD2EF-E008-4203-B494-33B8DCEEDA10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{31DA7407-0060-4A76-9F4C-D39C72BE25F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31DA7407-0060-4A76-9F4C-D39C72BE25F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31DA7407-0060-4A76-9F4C-D39C72BE25F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E675F3D-A2C9-47CB-AA2C-0BA5C133D11A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E675F3D-A2C9-47CB-AA2C-0BA5C133D11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E675F3D-A2C9-47CB-AA2C-0BA5C133D11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E675F3D-A2C9-47CB-AA2C-0BA5C133D11A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5DDD2EF-E008-4203-B494-33B8DCEEDA10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5DDD2EF-E008-4203-B494-33B8DCEEDA10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5DDD2EF-E008-4203-B494-33B8DCEEDA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5DDD2EF-E008-4203-B494-33B8DCEEDA10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

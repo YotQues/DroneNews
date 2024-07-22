@@ -22,6 +22,9 @@ namespace Model.Entities
 
         public string Content { get; set; }
 
+        [Required]
+        public DateTime PublishedAt { get; set; }
+
         [ForeignKey(nameof(Author))]
         public int AuthorId { get; set; }
 

@@ -1,0 +1,6 @@
+@DroneNews.Server_HostAddress = http://localhost:5211
+
+GET {{DroneNews.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

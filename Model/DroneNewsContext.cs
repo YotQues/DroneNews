@@ -24,14 +24,22 @@ public class DroneNewsContext : DbContext
     public virtual DbSet<Author> Authors { get; }
     public virtual DbSet<Article> Articles { get; }
 
-    
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<Source>();
-        modelBuilder.Entity<Author>();
-        modelBuilder.Entity<Article>();
+        modelBuilder.Entity<Source>()
+            .Property(f => f.Id)
+            .ValueGeneratedOnAdd();
+        
+        modelBuilder.Entity<Author>()
+            .Property(f => f.Id)
+            .ValueGeneratedOnAdd();
+        
+        modelBuilder.Entity<Article>()
+            .Property(f => f.Id)
+            .ValueGeneratedOnAdd();
     }
 }

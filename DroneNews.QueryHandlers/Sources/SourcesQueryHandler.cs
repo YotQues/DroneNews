@@ -1,6 +1,7 @@
 ﻿using DroneNews.Contract.Dto;
 using DroneNews.Model;
 using DroneNews.QueryHandlers.Sources.Queries;
+using Microsoft.EntityFrameworkCore;
 using System.Data.Entity;
 
 namespace DroneNews.QueryHandlers.Sources;
@@ -12,9 +13,14 @@ public class SourcesQueryHandler(DroneNewsContext context)
 
     public async Task<ListResponse<SourceDto>> Handle(GetSourcesQuery query)
     {
-        var (skip, take) = query;
+        var (skip, take, search) = query;
 
         var queryable = context.Sources.AsQueryable();
+
+        if(!string.IsNullOrEmpty(search)) {
+            var searchTerm = $"%{search}%";
+            queryable = queryable.Where(s => EF.Functions.Like(s.Url, search));
+        }
 
         int totalItems = await queryable.CountAsync();
         var items = await queryable

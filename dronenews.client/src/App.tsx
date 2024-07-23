@@ -1,56 +1,68 @@
-import { useEffect, useState } from 'react';
-import './App.css';
+﻿import { TextField } from '@mui/material';
+import MuiButton from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import style from './App.module.css';
+import { ArticleCard } from './Components/ArticleCard/ArticleCard.tsx';
+import { useArticles } from './server/hooks';
 
-interface Forecast {
-    date: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
-}
+export function App() {
+  const { isFetching, articles, fetchNextPage, setSearch, isEndOfData, page } = useArticles();
 
-function App() {
-    const [forecasts, setForecasts] = useState<Forecast[]>();
-
-    useEffect(() => {
-        populateWeatherData();
-    }, []);
-
-    const contents = forecasts === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <table className="table table-striped" aria-labelledby="tabelLabel">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                {forecasts.map(forecast =>
-                    <tr key={forecast.date}>
-                        <td>{forecast.date}</td>
-                        <td>{forecast.temperatureC}</td>
-                        <td>{forecast.temperatureF}</td>
-                        <td>{forecast.summary}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
-
-    return (
-        <div>
-            <h1 id="tabelLabel">Weather forecast</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
+  return (
+    <div className={style.appContainer}>
+      <div className={style.appBar}>
+        <h1>Drone.News!</h1>
+      </div>
+      <div className={style.pageContainer}>
+        <div className={style.flexRow} style={{ justifyContent: 'center', marginBottom: '25px' }}>
+          <TextField label="Search" onChange={(e) => setSearch(e.target.value)} />
         </div>
-    );
-
-    async function populateWeatherData() {
-        const response = await fetch('weatherforecast');
-        const data = await response.json();
-        setForecasts(data);
-    }
+        <div className="gridList">{isFetching && page == 1 ? <></> : articles.map((a) => <ArticleCard key={a.id} article={a} />)}</div>
+        <div className={style.buttonContainer}>
+          {isFetching ? (
+            <CircularProgress />
+          ) : (
+            <MuiButton disabled={isEndOfData} onClick={() => fetchNextPage()}>
+              LoadMore
+            </MuiButton>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default App;
+/*
+*
+
+ */
+
+/*
+*
+* ` <Autocomplete
+          onInputChange={(_, value) => setSourceSearch(value)}
+          getOptionLabel={(o) => o.url ?? 'Source'}
+          isOptionEqualToValue={(op, val) => op.id === val.id}
+          value={source}
+          options={sources ?? []}
+          onChange={(_, value) =>{
+            debugger
+            setSource(value as any)
+          }}
+          renderOption={(params, option) => <MenuItem value={option.id} >{option.url}</MenuItem>}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              InputProps={{
+                endAdornment: (
+                  <>
+                    {sourcesLoading ? <CircularProgress color="inherit" size={20} /> : null} {params.InputProps.endAdornment}
+                  </>
+                )
+              }}
+              label="Source"
+            />
+          )}
+        ></Autocomplete>
+*
+* */

@@ -1,0 +1,37 @@
+﻿.flexRow {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+:root {
+    --appBarHeight: 60px;
+}
+
+.appContainer {
+    position: relative;
+}
+
+.pageContainer {
+    padding-top: calc(var(--appBarHeight) + 56px);
+}
+
+.appBar {
+    width: 100dvw;
+    padding-inline: 12px;
+    border-bottom: 1px solid var(--borderColor);
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #fff;
+    z-index: 500;
+    box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.1);
+}
+
+.buttonContainer {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

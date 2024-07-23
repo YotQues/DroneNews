@@ -4,6 +4,7 @@ using DroneNews.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DroneNews.Model.Migrations
 {
     [DbContext(typeof(DroneNewsContext))]
-    partial class DroneNewsContextModelSnapshot : ModelSnapshot
+    [Migration("20240723094505_Articles_OriginalUrl_Title_UniqueIndex")]
+    partial class Articles_OriginalUrl_Title_UniqueIndex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

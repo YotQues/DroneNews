@@ -38,13 +38,12 @@ if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    root:'./src/*',
+    plugins: [plugin()],
     resolve: {
         alias: {
-            '@': fileURLToPath(new URL('./src', import.meta.url)),
+            '@': fileURLToPath(new URL('./src', import.meta.url))
         }
     },
-    plugins: [plugin()],
     server: {
         proxy: {
             '^/api': {

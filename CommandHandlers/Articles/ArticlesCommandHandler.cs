@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using NewsAPI.Constants;
 using NewsAPI.Models;
-using NewsAPI;
 using Newtonsoft.Json;
 using DroneNews.Model;
 using DroneNews.Services.NewsApi;
@@ -97,17 +96,41 @@ public class ArticlesCommandHandler(ILogger<ArticlesCommandHandler> _logger, ISe
 
     private async Task ProcessArticles(DroneNewsContext context, ArticlesResult articlesResponse, Action<string> log)
     {
-        var sources = await context.Sources.ToListAsync();
+        var sources = await context.Sources.ToArrayAsync();
         log("Fetched existing sources");
-        var authors = await context.Authors.ToListAsync();
+        var authors = await context.Authors.ToArrayAsync();
         log("Fetched existing authors");
+        var latestArticles = await context.Articles.Where(ar => ar.PublishedAt >=  DateTime.UtcNow.AddDays(-1)).ToArrayAsync();
+        log("Fetched existing articles");
 
-        List<Model.Entities.Article> newArticles = [];
+        Dictionary<string, Model.Entities.Article> newArticles = [];
         Dictionary<string, Model.Entities.Author> newAuthors = [];
         Dictionary<string, Model.Entities.Source> newSources = [];
 
         foreach (var article in articlesResponse.Articles)
         {
+            Model.Entities.Article? existingArticle;
+            if (article.Title.ToLower().Contains("[removed]"))
+            {
+                continue;
+            }
+
+            if (newArticles.TryGetValue(article.Url, out existingArticle))
+            {
+                continue;
+            }
+
+            string titleSearchTerm = article.Title.ToLower().Trim();
+            if (newArticles.Values.Any(ar => ar.Title.ToLower().Trim() == titleSearchTerm))
+            {
+                continue;
+            }
+
+            if(latestArticles.Any(ar => ar.Title.ToLower().Trim() == titleSearchTerm))
+            {
+                continue;
+            }
+
             string sourceName = article.Source.Name.ToLower().Trim();
 
             var source = sources.FirstOrDefault(s => s.Url.ToLower().Trim() == sourceName);
@@ -145,7 +168,7 @@ public class ArticlesCommandHandler(ILogger<ArticlesCommandHandler> _logger, ISe
                 Source = source
             };
 
-            newArticles.Add(articleRow);
+            newArticles[article.Url] = articleRow;
         }
 
         if (newAuthors.Count > 0)
@@ -156,19 +179,16 @@ public class ArticlesCommandHandler(ILogger<ArticlesCommandHandler> _logger, ISe
         if (newSources.Count > 0 || newAuthors.Count > 0)
             await context.SaveChangesAsync();
 
-        context.Articles.AddRange(newArticles);
+        context.Articles.AddRange(newArticles.Values);
         await context.SaveChangesAsync();
         log("Added articles successfully");
     }
 
     private async Task<ArticlesResult> FetchArticles(DateTime minDate, DateTime? lastDate)
     {
-        NewsApiClient client = _serviceProvider.GetRequiredService<NewsApi>().client;
-        ArticlesResult articlesResponse = await client.GetEverythingAsync(new EverythingRequest
+        var client = _serviceProvider.GetRequiredService<NewsApi>();
+        ArticlesResult articlesResponse = await client.GetEverythingAsync(new Services.NewsApi.EverythingRequest()
         {
-            Q = "drone",
-            SortBy = SortBys.PublishedAt,
-            Language = Languages.EN,
             From = minDate,
             To = lastDate,
             PageSize = 100,

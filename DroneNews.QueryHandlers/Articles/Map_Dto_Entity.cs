@@ -20,4 +20,5 @@ public static class Map_Dto_Entity
 
 
     public static SourceDto ToDto(this Source source) => new() { Id = source.Id, Url = source.Url };
+    public static AuthorDto ToDto(this Author author) => new() { Id = author.Id, Name = author.Name };
 }

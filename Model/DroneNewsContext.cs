@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Model.Entities;
+using DroneNews.Model.Entities;
 using System.Diagnostics;
 
-namespace Model;
+namespace DroneNews.Model;
 
 public class DroneNewsContext : DbContext
 {

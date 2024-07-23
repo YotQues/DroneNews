@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Model.Config;
+namespace DroneNews.Model.Config;
 
 public static class AddDroneNewsContextExtension
 {

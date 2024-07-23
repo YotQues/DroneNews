@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Model.Entities;
+namespace DroneNews.Model.Entities;
 
 [Table("Authors")]
 [PrimaryKey(nameof(Id))]

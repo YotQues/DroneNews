@@ -1,6 +1,4 @@
-﻿using Model.Entities;
-
-namespace DroneNews.CommandHandlers.Articles.Commands;
+﻿namespace DroneNews.CommandHandlers.Articles;
 
 public class PopulateArticles() : ICommand
 {

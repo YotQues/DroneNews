@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace Model.Config;
+namespace DroneNews.Model.Config;
 
 internal class DesignTimeDroneNewsDbContextFactory: IDesignTimeDbContextFactory<DroneNewsContext>
 {

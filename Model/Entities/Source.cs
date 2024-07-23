@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Model.Entities;
+namespace DroneNews.Model.Entities;
 
 [Table("Sources")]
 [PrimaryKey(nameof(Id))]

@@ -1,15 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using Model;
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
 using NewsAPI.Constants;
 using NewsAPI.Models;
 using NewsAPI;
 using Newtonsoft.Json;
+using DroneNews.Model;
 using DroneNews.Services.NewsApi;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using DroneNews.CommandHandlers.Articles.Commands;
 using CommandHandlers;
 
 namespace DroneNews.CommandHandlers.Articles;

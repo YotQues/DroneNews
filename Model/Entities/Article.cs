@@ -2,11 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Model.Entities
+namespace DroneNews.Model.Entities
 {
     [Table("Articles")]
     [PrimaryKey(nameof(Id))]
-    [Index(nameof(Title))]
+    [Index(nameof(Title), IsUnique = true)]
+    [Index(nameof(OriginalUrl), IsUnique = true)]
     public class Article
     {
         [Required]
@@ -17,6 +18,7 @@ namespace Model.Entities
 
         public string Description { get; set; }
 
+        [Required]
         public string OriginalUrl { get; set; }
         public string? ImageUrl { get; set; }
 

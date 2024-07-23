@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
     <SpaRoot>..\dronenews.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
@@ -18,9 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dronenews.client\dronenews.client.esproj">
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
+    <ProjectReference Include="..\Contract\DroneNews.Contract.csproj" />
+    <ProjectReference Include="..\CronJobs\DroneNews.CronJobs.csproj" />
+    <ProjectReference Include="..\DroneNews.QueryHandlers\DroneNews.QueryHandlers.csproj" />
+    <ProjectReference Include="..\Model\DroneNews.Model.csproj" />
+    <ProjectReference Include="..\Services\DroneNews.Services.csproj" />
   </ItemGroup>
 
 </Project>

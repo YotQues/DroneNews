@@ -12,7 +12,7 @@ public class ArticlesController(ArticlesQueryHandler queryHandler, ILogger<Artic
     private readonly ILogger<ArticlesController> _logger = logger;
 
     [HttpGet(Name = "FetchArticles")]
-    [ProducesResponseType(typeof(ListResponse<AuthorDto>), 200)]
+    [ProducesResponseType(typeof(ListResponse<ArticleDto>), 200)]
     public async Task<IActionResult> GetArticles([FromQuery] GetArticlesQuery query)
     {
         void log(string message) => Log(HttpContext.Request.Path, HttpContext.Request.Method, message);

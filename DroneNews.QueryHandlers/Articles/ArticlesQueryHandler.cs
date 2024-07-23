@@ -69,7 +69,8 @@ public class ArticlesQueryHandler(DroneNewsContext context, ILogger<ArticlesQuer
             return new ListResponse<ArticleDto>
             {
                 TotalItems = totalItems,
-                Items = items
+                Items = items,
+                IsLastPage = (skip + take) >= totalItems
             };
 
         }

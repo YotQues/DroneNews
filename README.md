@@ -9,26 +9,26 @@ For the backend, I tested my code with logging and SwaggerUI/Postman.
 
 Please feel free to contact me with any questions that may arise. For now, have a quick read to help you set up the project.
 
-### Run With Visual Studio
+## Run With Visual Studio
 ```
 1. Set Startup Project as DroneNews.Server and dronenews.client
 2. Press the 'Start' button in the debug section
 ```
 
- ### Run Backend
- From the solution root directory
+## Run With Shell Commands from the solution root directory
+#### Backend
  ```sh
 dotnet run --project="./DroneNews.Server/DroneNews.Server.csproj"
 ```
  
- ### Run Client
- From the solution root directory
+ #### Client
+ 
  ```sh
 cd ./dronenews.client
 npm run dev
 ```
 
-### Test Client
+## Test Client
 From the solution root directory
  ```sh
 cd ./dronenews.client

@@ -1,10 +1,10 @@
 export function debounce<TFunc extends (...args: unknown[]) => void>(callback: TFunc, wait = 0) {
-  let timeout: number | undefined = undefined;
+  let timeout: NodeJS.Timeout | undefined = undefined;
   return ((...args: unknown[]) => {
-    timeout && window.clearTimeout(timeout);
-    timeout = window.setTimeout(() => {
+    timeout && clearTimeout(timeout);
+    timeout = setTimeout(() => {
       callback(...args);
-      timeout && window.clearTimeout(timeout);
+      timeout && clearTimeout(timeout);
       timeout = undefined;
     }, wait);
   }) as TFunc;

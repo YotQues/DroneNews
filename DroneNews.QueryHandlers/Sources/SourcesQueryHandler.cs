@@ -21,8 +21,10 @@ public class SourcesQueryHandler(DroneNewsContext context)
 
         if (!string.IsNullOrEmpty(search))
         {
-            var searchTerm = $"%{search}%";
-            queryable = queryable.Where(s => EF.Functions.Like(s.Url, search));
+            var searchTerm = search.ToLower().Trim();
+            queryable = queryable
+                .Where(s => s.Url.ToLower().Trim().Contains(searchTerm) ||
+                EF.Functions.Like(s.Url.ToLower().Trim(), $"%{searchTerm}%"));
         }
 
         int totalItems = await queryable.CountAsync();

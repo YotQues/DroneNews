@@ -21,8 +21,10 @@ public class AuthrosQueryHandler(DroneNewsContext context)
 
         if (!string.IsNullOrEmpty(search))
         {
-            var searchTerm = $"%{search}%";
-            queryable = queryable.Where(s => EF.Functions.Like(s.Name, search));
+            var searchTerm = search.ToLower().Trim();
+            queryable = queryable
+                .Where(s => s.Name.ToLower().Trim().Contains(searchTerm) ||
+                EF.Functions.Like(s.Name.ToLower().Trim(), $"{searchTerm}"));
         }
 
         int totalItems = await queryable.CountAsync();

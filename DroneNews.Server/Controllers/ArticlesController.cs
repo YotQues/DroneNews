@@ -22,7 +22,8 @@ public class ArticlesController(ArticlesQueryHandler queryHandler, ILogger<Artic
             var (search, source, author, page) = query;
 
             log("Sending Query");
-            var res = await queryHandler.Handle(new(page - 1, 20, source, author, search));
+            int pageSize = 20;
+            var res = await queryHandler.Handle(new((page - 1) * pageSize, pageSize, source, author, search));
 
             log("Success");
             return Ok(res);

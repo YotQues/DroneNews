@@ -1,14 +1,14 @@
-import type {SourceDto} from "./source.dto.ts";
+import type {Source} from "./source.dto.ts";
 
-export interface ArticleDto {
+export interface Article {
     id: number;
     title: string;
     description: string;
     content: string;
     originalUrl: string;
     imageUrl?: string;
-    publishedAt: Date;
+    publishedAt: string;
     author?: string;
-    source?: SourceDto;
+    source?: Source;
 }
 

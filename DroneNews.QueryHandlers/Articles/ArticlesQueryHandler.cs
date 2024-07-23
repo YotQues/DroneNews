@@ -48,8 +48,7 @@ public class ArticlesQueryHandler(DroneNewsContext context, ILogger<ArticlesQuer
             {
                 var searchTerm = search.Trim().ToLower();
                 predicate = predicate
-                    .And(ar => EF.Functions.Like(ar.Title.ToLower(), $"%{searchTerm}%"))
-                    .Or(ar => EF.Functions.Contains(ar.Description.ToLower(), searchTerm));
+                    .And(ar => EF.Functions.Like(ar.Title.ToLower(), $"%{searchTerm}%"));
             }
 
             baseQueryable = baseQueryable

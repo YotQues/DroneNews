@@ -23,7 +23,7 @@ public class ArticlesController(ArticlesQueryHandler queryHandler, ILogger<Artic
 
             log("Sending Query");
             int pageSize = 20;
-            var res = await queryHandler.Handle(new((page - 1) * pageSize, pageSize, source, author, search));
+            var res = await queryHandler.Handle(new((page - 1) * pageSize, pageSize, source == -1 ? null : source, author == -1 ? null : author, search));
 
             log("Success");
             return Ok(res);
@@ -43,4 +43,16 @@ public class ArticlesController(ArticlesQueryHandler queryHandler, ILogger<Artic
 
 }
 
-public record GetArticlesQuery(string? search = null, int? source = null, int? author = null, int page = 1);
+public class GetArticlesQuery
+{
+    public string? search { get; set; } = null;
+
+    public int? source { get; set; } = null;
+    public int? author { get; set; } = null;
+    public int page { get; set; } = 1;
+
+    internal void Deconstruct(out string? search, out int? source, out int? author, out int page)
+    {
+        search = this.search; source = this.source; author = this.author; page = this.page;
+    }
+};

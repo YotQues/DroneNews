@@ -56,6 +56,7 @@ export function useArticles() {
     fetchNextPage: () => !isEndOfData && setPage((curr) => curr + 1),
     isEndOfData,
     totalItems,
-    source
-  }), [data, isEndOfData, isFetching, source, totalItems]);
+    source,
+    page
+  }), [data, isEndOfData, isFetching, page, source, totalItems]);
 }

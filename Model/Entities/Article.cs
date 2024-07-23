@@ -6,7 +6,7 @@ namespace DroneNews.Model.Entities
 {
     [Table("Articles")]
     [PrimaryKey(nameof(Id))]
-    [Index(nameof(Title), IsUnique = true)]
+    //[Index(nameof(Title), IsUnique = true)]
     [Index(nameof(OriginalUrl), IsUnique = true)]
     public class Article
     {
@@ -16,7 +16,7 @@ namespace DroneNews.Model.Entities
         [Required]
         public string Title { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Required]
         public string OriginalUrl { get; set; }

@@ -20,9 +20,9 @@ public class DroneNewsContext : DbContext
     }
     #endregion Finalizers
 
-    public virtual DbSet<Source> Sources { get; }
-    public virtual DbSet<Author> Authors { get; }
-    public virtual DbSet<Article> Articles { get; }
+    public virtual DbSet<Source> Sources { get; set; }
+    public virtual DbSet<Author> Authors { get; set; }
+    public virtual DbSet<Article> Articles { get; set; }
 
 
 

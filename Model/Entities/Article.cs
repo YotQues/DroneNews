@@ -18,7 +18,7 @@ namespace Model.Entities
         public string Description { get; set; }
 
         public string OriginalUrl { get; set; }
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         public string Content { get; set; }
 
@@ -26,12 +26,12 @@ namespace Model.Entities
         public DateTime PublishedAt { get; set; }
 
         [ForeignKey(nameof(Author))]
-        public int AuthorId { get; set; }
+        public int? AuthorId { get; set; }
 
         [ForeignKey(nameof(Source))]
         public int SourceId { get; set; }
 
-        public virtual Author Author { get; init; }
+        public virtual Author? Author { get; init; }
         public virtual Source Source { get; init; }
     }
 }

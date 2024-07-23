@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArticleCard renders correctly 1`] = `
+<div
+  className="undefined gridItem"
+  onClick={[Function]}
+>
+  <div>
+    <img
+      alt="article-image Test Article"
+      onError={[Function]}
+      src="test-image-url"
+    />
+  </div>
+  <div>
+    <div>
+      <h6
+        className="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+      >
+        Test Article
+      </h6>
+      <h6
+        className="MuiTypography-root MuiTypography-subtitle2 css-ati914-MuiTypography-root"
+      >
+        2024-07-24
+      </h6>
+    </div>
+  </div>
+</div>
+`;

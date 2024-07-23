@@ -2,7 +2,6 @@
 using DroneNews.Model;
 using DroneNews.QueryHandlers.Authors.Queries;
 using Microsoft.EntityFrameworkCore;
-using System.Data.Entity;
 
 namespace DroneNews.QueryHandlers.Authors;
 
@@ -10,7 +9,10 @@ namespace DroneNews.QueryHandlers.Authors;
 public class AuthrosQueryHandler(DroneNewsContext context)
 {
     readonly DroneNewsContext context = context;
-
+    ~AuthrosQueryHandler()
+    {
+        context.Dispose();
+    }
     public async Task<ListResponse<AuthorDto>> Handle(GetAuthorsQuery query)
     {
         var (skip, take, search) = query;

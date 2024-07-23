@@ -1,7 +1,7 @@
 ﻿using DroneNews.Contract.Dto;
 using DroneNews.Model.Entities;
 
-namespace DroneNews.QueryHandlers.Articles;
+namespace DroneNews.QueryHandlers;
 
 public static class Map_Dto_Entity
 {

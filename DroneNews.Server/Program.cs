@@ -13,6 +13,8 @@ namespace DroneNews.Server
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            GetRemoteConfig(builder.Configuration);
+
             ConfigureSerivces(builder.Services, builder.Configuration);
 
             var app = builder.Build();
@@ -70,5 +72,20 @@ namespace DroneNews.Server
 
             app.UseAuthorization();
         }
+
+        private static void GetRemoteConfig(ConfigurationManager configM)
+        {
+           var uri = configM.GetValue<string>("URI_RemoteAppConfig");
+
+            using var http = new HttpClient();
+            var getTask = http.GetAsync(uri);
+            getTask.Wait();
+            var res = getTask.Result;
+            var content = res.Content.ReadAsStream();
+
+            configM.AddJsonStream(content);
+        }
+
     }
+
 }

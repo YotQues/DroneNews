@@ -1,7 +1,9 @@
-# Hello Ori, and more friends at VOOM!
+# Hello Ori, and friends at VOOM!
 I prepared this home assignment for you as quickly as I could, aiming to maintain good code quality, considering my knowledge of your tech stack.
 
-We have an ASP.NET server that connects to a remote SQL Server Database with EFCore as the backend. For the front end, we have a simple React.js (TypeScript) app with a custom hook to manage our backend calls, some MaterialUI, and some custom styles.
+We have an ASP.NET server that connects to a remote SQL Server Database with EFCore as the backend.
+
+For the front end, we have a simple React.js (TypeScript) app with a custom hook to manage our backend calls, some use MaterialUI, and custom styles.
 
 You will find some unit tests for the front end, as per one of the 'Mix and Match Bonuses'.
 
